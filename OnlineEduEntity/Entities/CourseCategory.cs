@@ -1,7 +1,7 @@
 ﻿namespace OnlineEdu.Entity.Entities;
 public class CourseCategory
 {
-    public int CategoryId { get; set; }
+    public int CourseCategoryId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string Icon { get; set; }

@@ -1,7 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineEdu.DTO.Context;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddDbContext<OnlineEduContext>(options=>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
