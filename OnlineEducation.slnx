@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="OnlineEdu.API/OnlineEdu.API/OnlineEdu.API.csproj" Id="818d87cf-d411-406b-abec-bd294d68cbf6" />
+  <Project Path="OnlineEdu.Business/OnlineEdu.Business.csproj" Id="0e63c66b-27cd-4b48-ae69-0fce5e08c65b" />
+  <Project Path="OnlineEdu.DataAccess/OnlineEdu.DataAccess.csproj" Id="9aeca138-c0db-4127-bcfe-65d7fd58c033" />
+  <Project Path="OnlineEdu.DTO/OnlineEdu.DTO.csproj" Id="e6fabd7a-3b37-4469-ad84-8110784ca1a3" />
+  <Project Path="OnlineEdu.UI/OnlineEdu.UI.csproj" Id="9ae5d2e2-baf4-4cd7-9f78-91725b202ee9" />
+  <Project Path="OnlineEduEntity/OnlineEdu.Entity.csproj" Id="c0c47ac8-6c22-4ec5-93db-1e3d21c80148" />
+</Solution>
