@@ -25,7 +25,7 @@ public class GenericRepository<T>(OnlineEduContext _context) : IRepository<T> wh
     public void Delete(int id)
     {
         var entity = Table.Find(id);
-        Table.Remove(entity);
+        Table.Remove(entity!);
         _context.SaveChanges();
     }
 
@@ -36,12 +36,12 @@ public class GenericRepository<T>(OnlineEduContext _context) : IRepository<T> wh
 
     public T GetByFilter(Expression<Func<T, bool>> predicate)
     {
-        return Table.Where(predicate).FirstOrDefault();
+        return Table.Where(predicate).FirstOrDefault()!;
     }
 
     public T GetById(int id)
     {
-        return Table.Find(id);
+        return Table.Find(id)!;
     }
 
     public List<T> GetFilteredList(Expression<Func<T, bool>> predicate)

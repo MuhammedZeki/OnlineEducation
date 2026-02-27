@@ -1,9 +1,7 @@
-﻿
-
-namespace OnlineEdu.Entity.Entities;
-public class About
+﻿namespace OnlineEdu.DTO.DTOs.AboutDTOs;
+public class UpdateAboutDto
 {
-    public int AboutId{ get; set; }
+    public int AboutId { get; set; }
     public string Description { get; set; } = null!;
     public string ImageUrl1 { get; set; } = null!;
     public string ImageUrl2 { get; set; } = null!;

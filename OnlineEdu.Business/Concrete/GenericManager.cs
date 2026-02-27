@@ -1,6 +1,4 @@
-﻿
-
-using OnlineEdu.Business.Abstract;
+﻿using OnlineEdu.Business.Abstract;
 using OnlineEdu.DataAccess.Abstract;
 using System.Linq.Expressions;
 
