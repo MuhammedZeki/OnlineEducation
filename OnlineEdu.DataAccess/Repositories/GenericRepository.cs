@@ -25,7 +25,7 @@ public class GenericRepository<T>(OnlineEduContext _context) : IRepository<T> wh
     public void Delete(int id)
     {
         var entity = Table.Find(id);
-        Table.Remove(entity!);
+        Table.Remove(entity);
         _context.SaveChanges();
     }
 

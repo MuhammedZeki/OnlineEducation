@@ -10,7 +10,8 @@ namespace OnlineEdu.API.Controllers
     [ApiController]
     public class ContactsController(IGenericService<Contact> _contactService, IMapper _mapper) : ControllerBase
     {
-        [HttpGet]
+
+    [HttpGet]
     public IActionResult Get()
     {
         return Ok(_contactService.TGetList());
