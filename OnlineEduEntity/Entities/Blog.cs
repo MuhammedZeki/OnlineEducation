@@ -1,6 +1,4 @@
-﻿
-
-namespace OnlineEdu.Entity.Entities;
+﻿namespace OnlineEdu.Entity.Entities;
 public class Blog
 {
     public int BlogId { get; set; }

@@ -1,6 +1,4 @@
-﻿
-
-namespace OnlineEdu.Entity.Entities;
+﻿namespace OnlineEdu.Entity.Entities;
 public class SocialMedia
 {
     public int SocialMediaId { get; set; }

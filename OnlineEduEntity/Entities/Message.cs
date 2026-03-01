@@ -1,6 +1,4 @@
-﻿
-
-namespace OnlineEdu.Entity.Entities;
+﻿namespace OnlineEdu.Entity.Entities;
 public class Message
 {
     public int MessageId { get; set; }

@@ -1,8 +1,4 @@
-﻿
-
-using System.Reflection.Metadata.Ecma335;
-
-namespace OnlineEdu.Entity.Entities;
+﻿namespace OnlineEdu.Entity.Entities;
 public class Contact
 {
     public int ContactId{ get; set; }
