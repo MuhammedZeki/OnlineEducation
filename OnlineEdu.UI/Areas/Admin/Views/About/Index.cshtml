@@ -142,8 +142,8 @@
                     <td>@item.Item4</td>
                     <td>
                         <div class="action-buttons">
-                            <a asp-controller="About" asp-action="Delete" asp-area="Admin" class="btn-sil">Sil</a>
-                            <a asp-controller="About" asp-action="Update" asp-area="Admin" class="btn-guncelle">Güncelle</a>
+                            <a asp-controller="About" asp-action="Delete" asp-route-id="@item.AboutId" class="btn-sil">Sil</a>
+                            <a asp-controller="About" asp-action="Update" asp-route-id="@item.AboutId" class="btn-guncelle">Güncelle</a>
                         </div>
                     </td>
                 </tr>
@@ -151,4 +151,7 @@
             }
         </tbody>
     </table>
+</div>
+<div class="action-buttons">
+    <a asp-controller="About" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
 </div>
