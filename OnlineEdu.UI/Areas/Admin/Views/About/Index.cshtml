@@ -1,6 +1,154 @@
-﻿@{
+﻿@model List<ResultAboutDto>
+
+@{
     Layout = "_AdminLayout";
     ViewData["Title"] = "Hakkımızda";
 }
+@{
+    int count = 1;
+}
 
-<h3 class="text-center">Hakkımızda</h3>
+<style>
+    /* Modern, temiz bir tablo stili */
+    .modern-table-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden; /* Kenar yuvarlamalarının çalışması için */
+        border: 1px solid #e0e0e0;
+        margin-top: 20px;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+        .modern-table thead {
+            background-color: #343a40; /* Koyu başlık */
+            color: white;
+        }
+
+        .modern-table th,
+        .modern-table td {
+            padding: 15px 20px; /* Daha geniş padding */
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .modern-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .modern-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .modern-table tbody tr:hover {
+                background-color: #f8f9fa; /* Hover efekti */
+            }
+
+            .modern-table tbody tr:last-child td {
+                border-bottom: none; /* Son satırda çizgi olmasın */
+            }
+
+        /* Resimler için stiller */
+        .modern-table img {
+            display: block;
+            max-width: 100px; /* Maksimum genişlik */
+            height: auto;
+            border-radius: 4px; /* Hafif yuvarlak köşeler */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+            .modern-table img:hover {
+                transform: scale(1.1); /* Hoverda hafif büyüme */
+            }
+
+    /* İşlem butonları için stiller */
+    .action-buttons {
+        display: flex;
+        gap: 10px; /* Butonlar arası boşluk */
+        justify-content: flex-end; /* Sağda hizala */
+    }
+
+    .modern-table a {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid;
+    }
+
+    .btn-sil {
+        color: #dc3545;
+        background-color: transparent;
+        border-color: #dc3545;
+    }
+
+        .btn-sil:hover {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+    .btn-guncelle {
+        color: #17a2b8;
+        background-color: transparent;
+        border-color: #17a2b8;
+    }
+
+        .btn-guncelle:hover {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+</style>
+
+<div class="modern-table-container">
+    <table class="modern-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Resim1</th>
+                <th>Rsim2</th>
+                <th>Açıklama</th>
+                <th>Madde1</th>
+                <th>Madde2</th>
+                <th>Madde3</th>
+                <th>Madde4</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@count</td>
+                    <td><img src="@item.ImageUrl1" alt="Resim1" /></td>
+                    <td><img src="@item.ImageUrl2" alt="Resim2" /></td>
+                    <td>@item.Description</td>
+                    <td>@item.Item1</td>
+                    <td>@item.Item2</td>
+                    <td>@item.Item3</td>
+                    <td>@item.Item4</td>
+                    <td>
+                        <div class="action-buttons">
+                            <a asp-controller="About" asp-action="Delete" asp-area="Admin" class="btn-sil">Sil</a>
+                            <a asp-controller="About" asp-action="Update" asp-area="Admin" class="btn-guncelle">Güncelle</a>
+                        </div>
+                    </td>
+                </tr>
+                count++;
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,7 +1,10 @@
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("OnlineEduApi", client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7134/api/");
+});
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
