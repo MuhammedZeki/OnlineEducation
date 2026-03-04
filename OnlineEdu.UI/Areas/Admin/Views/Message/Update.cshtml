@@ -5,7 +5,7 @@
 
 }
 
-<form method="post">
+<form asp-action="Update" method="post">
     <input type="hidden" asp-for="MessageId" />
     <label asp-for="Name">Maps Url</label>
     <input asp-for="Name" class="form-control" />
@@ -19,5 +19,5 @@
     <label asp-for="Content">Content</label>
     <input asp-for="Content" class="form-control" />
     <br />
-    <button type="submit" class="btn btn-outline-primary">Ekle</button>
+    <button type="submit" class="btn btn-outline-primary">Güncelle</button>
 </form>

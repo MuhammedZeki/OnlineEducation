@@ -39,9 +39,13 @@ namespace OnlineEdu.API.Controllers
             return Ok("Eklindi");
         }
 
-        [HttpPut]
-        public IActionResult Update(UpdateMessageDto updateMessageDto)
-        {
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, UpdateMessageDto updateMessageDto)
+        {   
+            if( id != updateMessageDto.MessageId)
+            {
+                return BadRequest("Id'ler uyuşmuyor!");
+            }
             var newValue = _mapper.Map<Message>(updateMessageDto);
             _messageService.TUpdate(newValue);
             return Ok("Güncellendi");
