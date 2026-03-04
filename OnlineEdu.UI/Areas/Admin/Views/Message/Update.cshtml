@@ -1,0 +1,23 @@
+﻿@model UpdateMessageDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Mesaj Ekle";
+
+}
+
+<form method="post">
+    <input type="hidden" asp-for="MessageId" />
+    <label asp-for="Name">Maps Url</label>
+    <input asp-for="Name" class="form-control" />
+    <br />
+    <label asp-for="Email">Email</label>
+    <textarea asp-for="Email" class="form-control" rows="5"></textarea>
+    <br />
+    <label asp-for="Subject">Subject</label>
+    <input asp-for="Subject" class="form-control" />
+    <br />
+    <label asp-for="Content">Content</label>
+    <input asp-for="Content" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Ekle</button>
+</form>

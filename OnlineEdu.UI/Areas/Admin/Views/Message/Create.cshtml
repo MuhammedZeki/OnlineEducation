@@ -1,0 +1,22 @@
+﻿@model CreateMessageDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Mesaj Ekle";
+
+}
+
+<form method="post">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <br />
+    <label asp-for="Email"></label>
+    <input type="email" asp-for="Email" class="form-control" />
+    <br />
+    <label asp-for="Subject"></label>
+    <input asp-for="Subject" class="form-control" />
+    <br />
+    <label asp-for="Content"></label>
+    <input asp-for="Content" class="form-control" />
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Ekle</button>
+</form>

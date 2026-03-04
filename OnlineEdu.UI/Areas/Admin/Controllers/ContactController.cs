@@ -12,7 +12,6 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
             var results =await _httpClient.GetFromJsonAsync<List<ResultContactDto>>("contacts");
             return View(results);
         }
-
         public async Task<IActionResult> Delete(int id)
         {
             await _httpClient.DeleteAsync($"contacts/{id}");

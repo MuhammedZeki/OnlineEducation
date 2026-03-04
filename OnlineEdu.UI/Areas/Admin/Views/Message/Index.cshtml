@@ -1,0 +1,308 @@
+﻿@model List<ResultMessageDto>
+@{
+    ViewData["Title"] = "Message";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 1;
+}
+<style>
+    /* Modern Modal Tasarımı */
+    .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.7); /* Daha koyu ve premium bir blur efekti */
+        backdrop-filter: blur(4px);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .modal-box {
+        background: white;
+        padding: 30px;
+        border-radius: 16px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        text-align: center;
+        transform: scale(0.95);
+        animation: slideUp 0.3s ease-out forwards;
+    }
+
+    /* Modal İkon Alanı */
+    .modal-icon {
+        width: 60px;
+        height: 60px;
+        background: #fee2e2;
+        color: #dc3545;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin: 0 auto 20px;
+    }
+
+    .modal-box h3 {
+        margin: 0 0 10px;
+        color: #1f2937;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .modal-box p {
+        color: #6b7280;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 25px;
+    }
+
+    .modal-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+    }
+
+    /* Modern Butonlar */
+    .btn-modal {
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        border: none;
+        flex: 1;
+    }
+
+    .btn-confirm {
+        background-color: #dc3545;
+        color: white;
+    }
+
+        .btn-confirm:hover {
+            background-color: #bb2d3b;
+            transform: translateY(-1px);
+        }
+
+    .btn-cancel {
+        background-color: #f3f4f6;
+        color: #4b5563;
+    }
+
+    .btn-cancel:hover {
+        background-color: #e5e7eb;
+        color: #1f2937;
+    }
+
+    /* Animasyonlar */
+    keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    keyframes slideUp {
+        to {
+            transform: scale(1);
+        }
+    }
+    /* Modern, temiz bir tablo stili */
+    .modern-table-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden; /* Kenar yuvarlamalarının çalışması için */
+        border: 1px solid #e0e0e0;
+        margin-top: 20px;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+        .modern-table thead {
+            background-color: #343a40; /* Koyu başlık */
+            color: white;
+        }
+
+        .modern-table th,
+        .modern-table td {
+            padding: 15px 20px; /* Daha geniş padding */
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .modern-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .modern-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .modern-table tbody tr:hover {
+                background-color: #f8f9fa; /* Hover efekti */
+            }
+
+            .modern-table tbody tr:last-child td {
+                border-bottom: none; /* Son satırda çizgi olmasın */
+            }
+
+        /* Resimler için stiller */
+        .modern-table img {
+            display: block;
+            max-width: 100px; /* Maksimum genişlik */
+            height: auto;
+            border-radius: 4px; /* Hafif yuvarlak köşeler */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+            .modern-table img:hover {
+                transform: scale(1.1); /* Hoverda hafif büyüme */
+            }
+
+    /* İşlem butonları için stiller */
+    .action-buttons {
+        display: flex;
+        gap: 10px; /* Butonlar arası boşluk */
+        justify-content: flex-end; /* Sağda hizala */
+    }
+
+    .modern-table a {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid;
+    }
+
+    .btn-sil {
+        color: #dc3545;
+        background-color: transparent;
+        border-color: #dc3545;
+    }
+
+        .btn-sil:hover {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+    .btn-guncelle {
+        color: #17a2b8;
+        background-color: transparent;
+        border-color: #17a2b8;
+    }
+
+        .btn-guncelle:hover {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+</style>
+
+<div class="modern-table-container">
+    <table class="modern-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Subject</th>
+                <th>Content</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+                    <td>@item.Subject</td>
+                    <td>@item.Content</td>
+                    <td>
+                        <div class="action-buttons">
+                            <form asp-area="Admin"
+                                  asp-controller="Message"
+                                  asp-action="Delete"
+                                  asp-route-id="@item.MessageId"
+                                  method="post"
+                                  class="delete-form"
+                                  style="display:inline;">
+
+                                <button type="button" class="btn-sil open-modal">
+                                    Sil
+                                </button>
+                            </form>
+                            <a asp-controller="Message" asp-action="Update" asp-route-id="@item.MessageId" class="btn-guncelle">Güncelle</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="action-buttons">
+    <a asp-controller="Message" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
+</div>
+
+<div id="confirmModal" class="modal-overlay">
+    <div class="modal-box">
+        <p>Bu kaydı silmek istediğinize emin misiniz?</p>
+        <div class="modal-actions">
+            <button id="confirmDelete" class="btn-sil">Evet, Sil</button>
+            <button id="cancelDelete" class="btn-guncelle">Vazgeç</button>
+        </div>
+    </div>
+</div>
+<script>
+    let selectedForm = null;
+
+    document.querySelectorAll(".open-modal").forEach(btn => {
+        btn.addEventListener("click", function () {
+            selectedForm = this.closest("form");
+            const modal = document.getElementById("confirmModal");
+            modal.style.display = "flex";
+        });
+    });
+
+    document.getElementById("cancelDelete").addEventListener("click", function () {
+        document.getElementById("confirmModal").style.display = "none";
+        selectedForm = null;
+    });
+
+    // Dışarı tıklandığında kapanma özelliği
+    window.onclick = function(event) {
+        const modal = document.getElementById("confirmModal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+            selectedForm = null;
+        }
+    }
+
+    document.getElementById("confirmDelete").addEventListener("click", function () {
+        if (selectedForm) {
+            selectedForm.submit();
+        }
+    });
+</script>
