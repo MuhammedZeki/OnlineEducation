@@ -1,0 +1,19 @@
+﻿@model UpdateSubscriberDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Subscriber Ekle";
+
+}
+
+<form method="post" asp-action="Update">
+    <input type="hidden" asp-for="SubscriberId" />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" class="form-control" />
+    <br />
+    <div class="form-check">
+        <input type="checkbox" asp-for="IsActive" class="form-check-input" />
+        <label asp-for="IsActive" class="form-check-label"></label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Güncelle</button>
+</form>

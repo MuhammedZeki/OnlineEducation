@@ -39,9 +39,13 @@ namespace OnlineEdu.API.Controllers
             return Ok("Eklindi");
         }
 
-        [HttpPut]
-        public IActionResult Update(UpdateSubscriberDto updateSubscriberDto)
-        {
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, UpdateSubscriberDto updateSubscriberDto)
+        {   
+            if(id != updateSubscriberDto.SubscriberId)
+            {
+                return BadRequest("Id'ler uyuşmuyor!");
+            }
             var newValue = _mapper.Map<Subscriber>(updateSubscriberDto);
             _subcriberService.TUpdate(newValue);
             return Ok("Güncellendi");
