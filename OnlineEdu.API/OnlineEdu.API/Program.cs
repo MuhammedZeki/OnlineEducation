@@ -5,6 +5,7 @@ using OnlineEdu.DataAccess.Abstract;
 using OnlineEdu.DataAccess.Repositories;
 using OnlineEdu.DTO.Context;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,7 @@ builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddDbContext<OnlineEduContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x =>x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
