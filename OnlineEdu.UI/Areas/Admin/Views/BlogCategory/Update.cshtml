@@ -1,0 +1,15 @@
+﻿@model UpdateBlogCategoryDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Blog Kategori Güncelleme";
+
+}
+
+<form method="post">
+    <input type="hidden" asp-for="BlogCategoryId" />
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Ekle</button>
+</form>
