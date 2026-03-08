@@ -9,14 +9,16 @@ namespace OnlineEdu.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class CoursesController(
-        IGenericService<Course> _courseService,
+        ICourseService _courseService,
         IMapper _mapper
     ) : ControllerBase
     {
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_courseService.TGetList());
+            var values = _courseService.TGetCoursesWithCategories();
+            var courses = _mapper.Map<List<ResultCourseDto>>(values);
+            return Ok(courses);
         }
 
         [HttpGet("{id}")]

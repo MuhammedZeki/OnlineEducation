@@ -1,0 +1,172 @@
+﻿@model List<ResultCourseCategoryDto>
+@{
+    ViewData["Title"] = "Kurs Kategori";
+    Layout = "_AdminLayout";
+}
+@{
+    int count = 1;
+}
+<style>
+    /* Modern, temiz bir tablo stili */
+    .modern-table-container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        overflow: hidden; /* Kenar yuvarlamalarının çalışması için */
+        border: 1px solid #e0e0e0;
+        margin-top: 20px;
+    }
+
+    .modern-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+        .modern-table thead {
+            background-color: #343a40; /* Koyu başlık */
+            color: white;
+        }
+
+        .modern-table th,
+        .modern-table td {
+            padding: 15px 20px; /* Daha geniş padding */
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .modern-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .modern-table tbody tr {
+            transition: background-color 0.3s ease;
+        }
+
+            .modern-table tbody tr:hover {
+                background-color: #f8f9fa; /* Hover efekti */
+            }
+
+            .modern-table tbody tr:last-child td {
+                border-bottom: none; /* Son satırda çizgi olmasın */
+            }
+
+        /* Resimler için stiller */
+        .modern-table img {
+            display: block;
+            max-width: 100px; /* Maksimum genişlik */
+            height: auto;
+            border-radius: 4px; /* Hafif yuvarlak köşeler */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+            .modern-table img:hover {
+                transform: scale(1.1); /* Hoverda hafif büyüme */
+            }
+
+    /* İşlem butonları için stiller */
+    .action-buttons {
+        display: flex;
+        gap: 10px; /* Butonlar arası boşluk */
+        justify-content: flex-end; /* Sağda hizala */
+    }
+
+    .modern-table a {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 4px;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid;
+    }
+
+    .btn-sil {
+        color: #dc3545;
+        background-color: transparent;
+        border-color: #dc3545;
+    }
+
+        .btn-sil:hover {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+    .btn-guncelle {
+        color: #17a2b8;
+        background-color: transparent;
+        border-color: #17a2b8;
+    }
+
+        .btn-guncelle:hover {
+            color: #fff;
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+</style>
+
+<div class="modern-table-container">
+    <table class="modern-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Icon</th>
+                <th>IsShown</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@item.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Icon</td>
+                    <td>@item.IsShown</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button onclick="handleDeleteCourseCategory(@item.CourseCategoryId)" class="btn-sil">Sil</button>
+                            <a asp-controller="CourseCategory" asp-action="Update" asp-route-id="@item.CourseCategoryId" class="btn-guncelle">Güncelle</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="action-buttons">
+    <a asp-controller="CourseCategory" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
+</div>
+
+
+<script>
+
+    function handleDeleteCourseCategory(id) {
+
+        Swal.fire({
+              title: "Silmek istediğinize emin misin?",
+              text: "İşleminiz geri alınmaz!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Evet, Sil!",
+              cancelButtonText: "Hayır"
+        }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "/Admin/CourseCategory/Delete/" + id;
+              }
+        });
+    }
+
+</script>

@@ -9,9 +9,9 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
         private readonly HttpClient _httpClient = httpClientFactory.CreateClient("OnlineEduApi");
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var values = _httpClient.GetFromJsonAsync<List<ResultSocialMediaDto>>("socialMedias");
+            var values =await _httpClient.GetFromJsonAsync<List<ResultSocialMediaDto>>("socialMedias");
             return View(values);
         }
 

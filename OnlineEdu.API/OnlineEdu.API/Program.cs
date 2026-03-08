@@ -15,6 +15,9 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<IBlogService, BlogManager>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ICourseService, CourseManager>();
+
 builder.Services.AddDbContext<OnlineEduContext>(options=>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
 

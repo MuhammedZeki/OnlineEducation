@@ -1,0 +1,25 @@
+﻿@model CreateCourseCategoryDto
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Kurs Ekle";
+
+}
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+    <br />
+    <label asp-for="Description"></label>
+    <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+    <br />
+    <label asp-for="Icon"></label>
+    <input asp-for="Icon" class="form-control" />
+    <br />
+    <div class="form-check">
+        <input type="checkbox" asp-for="IsShown" class="form-check-input" />
+        <label asp-for="IsShown" class="form-check-label"></label>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-outline-primary">Ekle</button>
+</form>
