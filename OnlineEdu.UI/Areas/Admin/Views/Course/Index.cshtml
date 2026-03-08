@@ -1,6 +1,6 @@
-﻿@model List<ResultBlogDto>
+﻿@model List<ResultCourseDto>
 @{
-    ViewData["Title"] = "Blog Listesi";
+    ViewData["Title"] = "Kurs Listesi";
     Layout = "_AdminLayout";
 }
 @{
@@ -116,11 +116,11 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Title</th>
-                <th>Content</th>
+                <th>CourseName</th>
                 <th>ImageUrl</th>
-                <th>Blog Date Time</th>
-                <th>BlogCategory</th>
+                <th>Price</th>
+                <th>IsShown</th>
+                <th>CourseCategory</th>
                 <th></th>
             </tr>
         </thead>
@@ -130,15 +130,15 @@
                 count++;
                 <tr>
                     <td>@count</td>
-                    <td>@item.Title</td>
-                    <td style="width:500px;">@item.Content</td>
+                    <td>@item.CourseName</td>
                     <td>@item.ImageUrl</td>
-                    <td>@item.BlogDate.ToShortDateString()</td>
-                    <td>@item.BlogCategory.Name</td>
+                    <td>@item.Price</td>
+                    <td>@item.IsShown</td>
+                    <td>@item.CourseCategory.Name</td>
                     <td>
                         <div class="action-buttons">
-                            <button onclick="handleDeleteBlog(@item.BlogId)" class="btn-sil">Sil</button>
-                            <a asp-controller="Blog" asp-action="Update" asp-route-id="@item.BlogId" class="btn-guncelle">Güncelle</a>
+                            <button onclick="handleDeleteCourse(@item.CourseId)" class="btn-sil">Sil</button>
+                            <a asp-controller="Course" asp-action="Update" asp-route-id="@item.CourseId" class="btn-guncelle">Güncelle</a>
                         </div>
                     </td>
                 </tr>
@@ -147,13 +147,13 @@
     </table>
 </div>
 <div class="action-buttons">
-    <a asp-controller="Blog" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
+    <a asp-controller="Course" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
 </div>
 
 
 <script>
 
-    function handleDeleteBlog(id) {
+    function handleDeleteCourse(id) {
 
         Swal.fire({
               title: "Silmek istediğinize emin misin?",
@@ -166,7 +166,7 @@
               cancelButtonText: "Hayır"
         }).then((result) => {
               if (result.isConfirmed) {
-                window.location.href = "/Admin/Blog/Delete/" + id;
+                window.location.href = "/Admin/Course/Delete/" + id;
               }
         });
     }
