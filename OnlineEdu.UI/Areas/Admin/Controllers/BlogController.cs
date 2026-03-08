@@ -35,8 +35,8 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _httpClient.DeleteAsync($"blogs/{id}");
-            return View();
+            await _httpClient.DeleteAsync($"blogs/{id}");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -50,6 +50,8 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateBlogDto createBlogDto)
         {
+            await CategoryList();
+
             var response = await _httpClient.PostAsJsonAsync("blogs", createBlogDto);
             if (!response.IsSuccessStatusCode)
             {
@@ -62,6 +64,8 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
+            await CategoryList();
+
             if (id <= 0)
             {
                 return RedirectToAction(nameof(Index));
@@ -74,6 +78,8 @@ namespace OnlineEdu.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(UpdateBlogDto updateBlogDto)
         {
+            await CategoryList();
+
             var response = await _httpClient.PutAsJsonAsync("blogs", updateBlogDto);
             if (!response.IsSuccessStatusCode)
             {

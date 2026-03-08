@@ -16,7 +16,9 @@ namespace OnlineEdu.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_courseCategoryService.TGetList());
+            var values = _courseCategoryService.TGetList();
+            var courseCategories = _mapper.Map<List<ResultCourseCategoryDto>>(values);
+            return Ok(courseCategories);
         }
 
         [HttpGet("{id}")]

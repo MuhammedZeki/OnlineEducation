@@ -1,6 +1,6 @@
 ﻿@model List<ResultBlogDto>
 @{
-    ViewData["Title"] = "Blog";
+    ViewData["Title"] = "Blog Listesi";
     Layout = "_AdminLayout";
 }
 @{
@@ -131,13 +131,13 @@
                 <tr>
                     <td>@count</td>
                     <td>@item.Title</td>
-                    <td>@item.Content</td>
+                    <td style="width:500px;">@item.Content</td>
                     <td>@item.ImageUrl</td>
                     <td>@item.BlogDate.ToShortDateString()</td>
-                    <td>@item.BlogCategoryId</td>
+                    <td>@item.BlogCategory.Name</td>
                     <td>
                         <div class="action-buttons">
-                            <a asp-controller="Blog" asp-action="Delete" asp-route-id="@item.BlogId" class="btn-sil">Sil</a>
+                            <button onclick="handleDeleteBlog(@item.BlogId)" class="btn-sil">Sil</button>
                             <a asp-controller="Blog" asp-action="Update" asp-route-id="@item.BlogId" class="btn-guncelle">Güncelle</a>
                         </div>
                     </td>
@@ -149,3 +149,26 @@
 <div class="action-buttons">
     <a asp-controller="Blog" asp-action="Create" class="btn-guncelle">Yeni Alan Ekle</a>
 </div>
+
+
+<script>
+
+    function handleDeleteBlog(id) {
+
+        Swal.fire({
+              title: "Silmek istediğinize emin misin?",
+              text: "İşleminiz geri alınmaz!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Evet, Sil!",
+              cancelButtonText: "Hayır"
+        }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = "/Admin/Blog/Delete/" + id;
+              }
+        });
+    }
+
+</script>

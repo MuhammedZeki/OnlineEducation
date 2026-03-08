@@ -15,7 +15,9 @@ namespace OnlineEdu.API.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_blogCategoryService.TGetList());
+            var values = _blogCategoryService.TGetList();
+            var blogCategories = _mapper.Map<List<ResultBlogCategoryDto>>(values);
+            return Ok(blogCategories);
         }
 
         [HttpGet("{id}")]
