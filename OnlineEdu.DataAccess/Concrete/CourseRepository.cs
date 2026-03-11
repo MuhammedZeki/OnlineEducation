@@ -11,15 +11,13 @@ namespace OnlineEdu.DataAccess.Concrete
 {
     public class CourseRepository : GenericRepository<Course>, ICourseRepository
     {
-        private readonly OnlineEduContext _xcontext;
         public CourseRepository(OnlineEduContext _context) : base(_context)
         {
-            _xcontext = _context;
         }
 
         public List<Course> GetCoursesWithCategories()
         {
-            return _xcontext.Courses.Include( x => x.CourseCategory).ToList();
+            return _context.Courses.Include( x => x.CourseCategory).ToList();
         }
     }
 }
