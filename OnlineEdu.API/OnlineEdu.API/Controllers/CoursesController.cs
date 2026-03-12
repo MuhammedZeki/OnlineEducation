@@ -51,5 +51,13 @@ namespace OnlineEdu.API.Controllers
             _courseService.TUpdate(newValue);
             return Ok("Güncellendi");
         }
+
+        [HttpGet("getActiveCourse")]
+        public IActionResult GetActiveCourse()
+        {
+            var values = _courseService.TGetFilteredList(x=>x.IsShown);
+            var courses = _mapper.Map<List<ResultCourseDto>>(values);
+            return Ok(courses);
+        }
     }
 }
