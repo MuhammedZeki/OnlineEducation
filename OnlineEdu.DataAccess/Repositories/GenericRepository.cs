@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineEdu.DataAccess.Abstract;
-using OnlineEdu.DTO.Context;
+using OnlineEdu.DataAccess.Context;
 using System.Linq.Expressions;
 
 namespace OnlineEdu.DataAccess.Repositories;

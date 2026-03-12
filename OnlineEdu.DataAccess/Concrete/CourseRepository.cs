@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineEdu.DataAccess.Abstract;
+using OnlineEdu.DataAccess.Context;
 using OnlineEdu.DataAccess.Repositories;
-using OnlineEdu.DTO.Context;
 using OnlineEdu.Entity.Entities;
 using System;
 using System.Collections.Generic;

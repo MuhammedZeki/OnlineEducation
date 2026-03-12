@@ -1,10 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using OnlineEdu.DataAccess.Context;
+using OnlineEdu.Entity.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddDbContext<OnlineEduContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlConnection")));
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<OnlineEduContext>();
+
 builder.Services.AddHttpClient("OnlineEduApi", client =>
 {
     client.BaseAddress = new Uri("https://localhost:7134/api/");
 });
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

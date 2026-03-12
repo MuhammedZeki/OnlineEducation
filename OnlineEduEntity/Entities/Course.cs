@@ -8,4 +8,9 @@ public class Course
     public bool IsShown{ get; set; }
     public int CourseCategoryId { get; set; }
     public CourseCategory CourseCategory { get; set; }
+
+    public int? AppUserId { get; set; } //TeacherId
+    public AppUser AppUser { get; set; }
+
+    public List<CourseRegister> CourseRegisters { get; set; } // Bu kursa kayıt olan tüm öğrenciler
 }

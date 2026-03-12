@@ -1,13 +1,13 @@
-﻿
-
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using OnlineEdu.Entity.Entities;
 
-namespace OnlineEdu.DTO.Context;
 
-public class OnlineEduContext :DbContext
+namespace OnlineEdu.DataAccess.Context;
+
+public class OnlineEduContext :IdentityDbContext<AppUser,AppRole,int>
 {
-    public OnlineEduContext(DbContextOptions options) : base(options)
+    public OnlineEduContext(DbContextOptions<OnlineEduContext> options) : base(options)
     {
         
     }

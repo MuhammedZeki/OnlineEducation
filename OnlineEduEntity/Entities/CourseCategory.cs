@@ -6,7 +6,5 @@ public class CourseCategory
     public string Description { get; set; }
     public string Icon { get; set; }
     public bool IsShown{ get; set; }
-    public int CourseId{ get; set; }
     public List<Course> Courses { get; set; }
-
 }
